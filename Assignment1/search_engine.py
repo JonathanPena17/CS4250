@@ -65,21 +65,17 @@ for doc in documents:
 #--> add your Python code here
 docMatrix = []
 
-# 1. Compute Term Frequency (TF)
 tf = []
 for doc in documents:
     total_terms = len(doc.split())
     row = [doc.split().count(term)/total_terms for term in terms]  
     tf.append(row)
 
-# 2. Compute Document Frequency (DF) for each term
 df = [sum(1 for row in tf if row[terms.index(term)] > 0) for term in terms]
 
-# 3. Compute Inverse Document Frequency (IDF)
 N = len(documents)
-idf = [math.log10(N / d) if d != 0 else 0 for d in df]  # Handle the case where d=0.
+idf = [math.log10(N / d) if d != 0 else 0 for d in df]  
 
-# 4. Compute TF-IDF
 for row in tf:
     tf_idf_row = [tf_value * idf_value for tf_value, idf_value in zip(row, idf)]
     docMatrix.append(tf_idf_row)
