@@ -65,10 +65,26 @@ for doc in documents:
 #--> add your Python code here
 docMatrix = []
 
+# 1. Compute Term Frequency (TF)
+tf = []
 for doc in documents:
-    row = [1 if term in doc.split() else 0 for term in terms]
-    docMatrix.append(row)
+    total_terms = len(doc.split())
+    row = [doc.split().count(term)/total_terms for term in terms]  
+    tf.append(row)
 
+# 2. Compute Document Frequency (DF) for each term
+df = [sum(1 for row in tf if row[terms.index(term)] > 0) for term in terms]
+
+# 3. Compute Inverse Document Frequency (IDF)
+N = len(documents)
+idf = [math.log10(N / d) if d != 0 else 0 for d in df]  # Handle the case where d=0.
+
+# 4. Compute TF-IDF
+for row in tf:
+    tf_idf_row = [tf_value * idf_value for tf_value, idf_value in zip(row, idf)]
+    docMatrix.append(tf_idf_row)
+
+print(docMatrix)
 
 #Calculate the document scores (ranking) using document weigths (tf-idf) calculated before and query weights (binary - have or not the term).
 #--> add your Python code here
@@ -78,9 +94,12 @@ for row in docMatrix:
     score = sum([row[terms.index(term)] for term in query_terms])
     docScores.append(score)
 
+print(docScores)
+
+
 #Calculate and print the precision and recall of the model by considering that the search engine will return all documents with scores >= 0.1.
 #--> add your Python code here
-relevant_retrieved = sum([1 for i, score in enumerate(docScores) if score >= 1 and labels[i] == 'R'])
+relevant_retrieved = sum([1 for i, score in enumerate(docScores) if score >= 0.1 and labels[i] == 'R'])
 retrieved = sum([1 for score in docScores if score >= 0.1])
 relevant = labels.count('R')
 
@@ -89,3 +108,4 @@ recall = relevant_retrieved / relevant if relevant > 0 else 0
 
 print(f"Precision: {precision*100:.2f}%")
 print(f"Recall: {recall*100:.2f}%")
+
