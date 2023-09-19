@@ -4,7 +4,7 @@
 # SPECIFICATION: Complete the Python program (search_engine.py) that will read the file collection.csv 
 #                and output the precision/recall of a proposed search engine given the query q ={cat and dogs}
 # FOR: CS 4250- Assignment #1
-# TIME SPENT: 2 hours
+# TIME SPENT: 50 minutes
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: DO NOT USE ANY ADVANCED PYTHON LIBRARY TO COMPLETE THIS CODE SUCH AS numpy OR pandas. You have to work here only with standard arrays
