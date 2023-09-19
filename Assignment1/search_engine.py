@@ -84,8 +84,6 @@ for row in tf:
     tf_idf_row = [tf_value * idf_value for tf_value, idf_value in zip(row, idf)]
     docMatrix.append(tf_idf_row)
 
-print(docMatrix)
-
 #Calculate the document scores (ranking) using document weigths (tf-idf) calculated before and query weights (binary - have or not the term).
 #--> add your Python code here
 docScores = []
@@ -93,9 +91,6 @@ query_terms = ["cat", "dog"]
 for row in docMatrix:
     score = sum([row[terms.index(term)] for term in query_terms])
     docScores.append(score)
-
-print(docScores)
-
 
 #Calculate and print the precision and recall of the model by considering that the search engine will return all documents with scores >= 0.1.
 #--> add your Python code here
@@ -108,4 +103,3 @@ recall = relevant_retrieved / relevant if relevant > 0 else 0
 
 print(f"Precision: {precision*100:.2f}%")
 print(f"Recall: {recall*100:.2f}%")
-
