@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
-# SPECIFICATION: description of the program
+# AUTHOR: Jonathan Pena
+# FILENAME: index.py
+# SPECIFICATION: driver file for the code
 # FOR: CS 4250- Assignment #2
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: 0 minutes
 #-----------------------------------------------------------*/
 
 #importing some Python libraries
